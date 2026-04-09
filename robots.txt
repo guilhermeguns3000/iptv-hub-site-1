@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iptu2022br.com.br/sitemap.xml
