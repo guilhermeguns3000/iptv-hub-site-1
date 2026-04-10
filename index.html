@@ -26,15 +26,25 @@
 <body>
     <div class="bg-glow"></div>
 
-    <header class="container">
-        <nav style="display: flex; justify-content: space-between; align-items: center; padding: 20px 0;">
-            <div class="logo font-heading" style="font-size: 1.5rem; font-weight: 700; color: var(--primary);">IPTV<span style="color: #fff;">HUB</span></div>
-            <div class="nav-links">
-                <a href="#ranking" style="color: #fff; text-decoration: none; margin-left: 20px;">Ranking</a>
-                <a href="#comparativo" style="color: #fff; text-decoration: none; margin-left: 20px;">Comparativo</a>
-                <a href="#faq" style="color: #fff; text-decoration: none; margin-left: 20px;">Dúvidas</a>
-            </div>
-        </nav>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/" class="logo font-heading">IPTV<span>HUB</span></a>
+                
+                <div class="nav-links" id="navLinks">
+                    <a href="#ranking">Ranking</a>
+                    <a href="#comparativo">Comparativo</a>
+                    <a href="#faq">Dúvidas</a>
+                    <a href="https://coreplaytv.com.br" target="_blank" class="btn btn-primary header-btn" style="padding: 10px 20px; font-size: 0.9rem;">Testar Grátis</a>
+                </div>
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -557,13 +567,47 @@
     </script>
 
     <script>
+        // MOBILE MENU TOGGLE
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const links = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : 'initial';
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.style.overflow = 'initial';
+            });
+        });
+
+        // SCROLL EFFECT
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
 
@@ -580,20 +624,23 @@
             });
         });
 
-        // Reveal animations on scroll
-        const reveal = () => {
-            const reveals = document.querySelectorAll('.glass-card, .rank-card, .feature-grid, .seo-machine');
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                const elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    el.classList.add('active-reveal');
+        // Reveal animations on scroll (Intersection Observer is more efficient)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active-reveal');
                 }
             });
-        }
-        window.addEventListener('scroll', reveal);
-        reveal(); // Initial check
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card, .rank-card, .feature-grid, .seo-machine, table, .faq-item').forEach(el => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>
