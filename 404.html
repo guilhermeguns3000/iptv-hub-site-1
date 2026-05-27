@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada | IPTV HUB</title>
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://iptu2022br.com.br/">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <style>
+        .error-container {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+        .error-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .error-desc {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        .error-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .error-suggestions {
+            margin-top: 60px;
+            max-width: 700px;
+        }
+        .error-suggestions h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .suggestion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .suggestion-card {
+            padding: 20px;
+            text-align: left;
+            text-decoration: none;
+            color: var(--text-dim);
+            transition: all 0.3s;
+        }
+        .suggestion-card:hover {
+            border-color: var(--primary);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+        .suggestion-card span {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .suggestion-card strong {
+            display: block;
+            color: #fff;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        .suggestion-card p {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/" class="logo font-heading">IPTV<span>HUB</span></a>
+                <div class="nav-links" id="navLinks">
+                    <a href="/#ranking">Ranking</a>
+                    <a href="/comparativo.html">Comparativo</a>
+                    <a href="/blog.html">Blog</a>
+                    <a href="https://vizzion.mov/" target="_blank" class="btn btn-primary header-btn" style="padding: 10px 20px; font-size: 0.9rem;">Testar Grátis</a>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="error-container">
+            <div class="error-code">404</div>
+            <h1 class="error-title">Esta página não existe</h1>
+            <p class="error-desc">O link que você acessou pode ter sido removido ou nunca existiu. Mas não se preocupe — o melhor IPTV do Brasil está a um clique de distância.</p>
+            <div class="error-links">
+                <a href="/" class="btn btn-primary" style="padding: 15px 40px; font-size: 1rem;">Ir para o Ranking</a>
+                <a href="/blog.html" class="btn" style="padding: 15px 40px; font-size: 1rem; border: 1px solid var(--border);">Ver o Blog</a>
+            </div>
+
+            <div class="error-suggestions">
+                <h3>Talvez você esteja procurando</h3>
+                <div class="suggestion-grid">
+                    <a href="/#ranking" class="glass-card suggestion-card">
+                        <span>🏆</span>
+                        <strong>Ranking IPTV 2026</strong>
+                        <p>Os 6 melhores provedores testados e auditados</p>
+                    </a>
+                    <a href="/comparativo.html" class="glass-card suggestion-card">
+                        <span>📊</span>
+                        <strong>Comparativo Técnico</strong>
+                        <p>Análise lado a lado com dados reais de desempenho</p>
+                    </a>
+                    <a href="/blog/melhores-listas-2026.html" class="glass-card suggestion-card">
+                        <span>📋</span>
+                        <strong>Melhores Listas IPTV</strong>
+                        <p>Auditoria completa das listas de 2026</p>
+                    </a>
+                    <a href="/blog/melhores-tv-box-2026.html" class="glass-card suggestion-card">
+                        <span>📺</span>
+                        <strong>Melhores TV Box</strong>
+                        <p>Qual hardware roda IPTV 4K sem travar</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="container" style="padding: 40px 0; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.9rem; text-align: center;">
+        <p>&copy; 2026 IPTUHUB. <a href="/" style="color: var(--primary);">Voltar para a Home</a></p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

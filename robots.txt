@@ -1,4 +1,16 @@
 User-agent: *
 Allow: /
 
+# Bloqueia paths legados do WordPress anterior (domínio reutilizado)
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/
+Disallow: /wp-json/
+Disallow: /iptu-verde-2022/
+Disallow: /o-que-e-o-codigo-1099-inss/
+Disallow: /o-que-e-o-duplex-play/
+
+# Bloqueia URLs com porta explícita (geram duplicatas)
+Disallow: /*:443
+
 Sitemap: https://iptu2022br.com.br/sitemap.xml
