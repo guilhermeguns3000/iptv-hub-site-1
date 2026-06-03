@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@700;900&display=swap');
+
+:root {
+    --bg-main: #060608;
+    --accent-primary: #00f2ff; /* Ciano Elite */
+    --accent-secondary: #ff00ff; /* Magenta Elite */
+    --text-main: #ffffff;
+    --text-muted: #88889a;
+    --glass-bg: rgba(18, 18, 24, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --container-width: 1140px;
+    --radius-lg: 24px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* THE BEAUTIFUL BLUR (RESTORED) */
+body::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 242, 255, 0.1), transparent 70%);
+    filter: blur(100px);
+    z-index: -1;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.08), transparent 70%);
+    filter: blur(100px);
+    z-index: -1;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Nav */
+.main-header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(6, 6, 8, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-wrapper nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-family: 'Outfit';
+}
+
+.logo span { color: var(--accent-primary); }
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { color: #fff; }
+
+/* Hero */
+.hero {
+    padding: 120px 0 60px;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    font-family: 'Outfit';
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+    background: linear-gradient(90deg, #fff, var(--accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+/* Components */
+.btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn-primary { background: var(--accent-primary); color: #000; }
+.btn-primary:hover { box-shadow: 0 0 20px rgba(0, 242, 255, 0.4); transform: translateY(-2px); }
+
+.btn-outline { border: 1px solid var(--glass-border); color: #fff; }
+.btn-outline:hover { background: rgba(255,255,255,0.05); }
+
+/* Ranking Table (Elite Restoration) */
+.ranking-table th {
+    padding: 20px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.ranking-table td {
+    padding: 15px 20px;
+    font-size: 0.95rem;
+}
+
+/* Lab & Content */
+.section-header { margin-bottom: 50px; text-align: center; }
+.section-header h2 { font-size: 2.2rem; font-family: 'Outfit'; margin-bottom: 10px; }
+
+.lab-card {
+    background: var(--glass-bg);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-border);
+}
+
+/* FAQ */
+.faq-tabs { margin-top: 40px; }
+.tab-nav { display: flex; gap: 10px; margin-bottom: 30px; justify-content: center; }
+.tab-btn {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.tab-btn.active { background: var(--accent-primary); color: #000; border: none; }
+
+.faq-item {
+    background: var(--glass-bg);
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    border: 1px solid var(--glass-border);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-title { font-size: 2.5rem; }
+    .lab-grid { grid-template-columns: 1fr; }
+}
