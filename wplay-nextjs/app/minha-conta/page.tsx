@@ -294,13 +294,24 @@ export default async function MinhaContaPage() {
         </div>
 
         {pagante && vipUrl && (
-          <a href={vipUrl} target="_blank" rel="noopener noreferrer" className="card flex items-center gap-4 border border-primary-bright p-5 transition-colors hover:bg-bg-raised">
-            <MessageCircle size={28} className="shrink-0 text-primary-bright" aria-hidden />
-            <span className="min-w-0 flex-1">
-              <strong className="block text-text-primary">Entrar no Suporte VIP</strong>
-              <span className="text-sm text-text-secondary">Passo obrigatório do assinante: mensagem pronta com seus dados, é só enviar.</span>
-            </span>
-          </a>
+          <div className="card card-destaque p-5">
+            <p className="section-label">Suporte VIP do assinante</p>
+            <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-start">
+              <div className="icon-tile shrink-0"><MessageCircle size={22} aria-hidden /></div>
+              <div className="min-w-0 flex-1">
+                <p className="font-heading text-lg font-bold text-text-primary">Salve nosso número VIP nos seus contatos</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-text-secondary">
+                  Esse é o canal exclusivo de quem assina. É por ele que avisamos quando a renovação está perto, quando sai
+                  atualização do app e resolvemos qualquer problema com prioridade. Se o número não estiver salvo, a mensagem
+                  pode chegar como contato desconhecido e você perde o aviso.
+                </p>
+                <a href={vipUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-4 w-full sm:w-auto">
+                  <MessageCircle size={16} aria-hidden /> Abrir Suporte VIP no WhatsApp
+                </a>
+                <p className="mt-2 text-xs text-text-tertiary">Ao abrir a conversa, toque no nome e escolha "Adicionar aos contatos". A mensagem já vai com seus dados.</p>
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Ações, como o painel real: renovar/assinar, suporte com dados, apps, guias */}
@@ -308,7 +319,7 @@ export default async function MinhaContaPage() {
           <a href="#planos" className="btn btn-primary col-span-3 py-3 text-sm sm:col-span-1">
             <RefreshCw size={16} aria-hidden /> {pagante ? "Renovar plano" : "Assinar"}
           </a>
-          <a href={suporteUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline py-2.5 text-sm"><Headset size={16} aria-hidden /> Suporte</a>
+          <a href={pagante && vipUrl ? vipUrl : suporteUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline py-2.5 text-sm"><Headset size={16} aria-hidden /> {pagante && vipUrl ? "Suporte VIP" : "Suporte"}</a>
           <Link href="/apps" className="btn btn-outline py-2.5 text-sm"><Smartphone size={16} aria-hidden /> Apps</Link>
           <Link href="/guias" className="btn btn-outline py-2.5 text-sm"><Info size={16} aria-hidden /> Guias</Link>
         </div>
