@@ -87,6 +87,9 @@ export default function WplayRecargaPage() {
           <Link href="/minha-conta" className="btn btn-primary">Entrar e renovar</Link>
           <Link href="/precos" className="btn btn-outline">Ver preço</Link>
         </div>
+        <p className="mt-4 text-sm text-text-tertiary">
+          Ainda não é cliente? Antes de recarregar, <Link href="/teste-gratis" className="text-primary-bright underline underline-offset-2">faça o teste grátis de 4 horas</Link>.
+        </p>
       </section>
 
       <section className="border-y border-border-subtle bg-bg-surface py-14 sm:py-18">

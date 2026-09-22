@@ -123,6 +123,9 @@ export default async function MinhaContaPage() {
             <div className="mt-6">
               <LoginEmailForm />
             </div>
+            <p className="mt-5 border-t border-border-subtle pt-4 text-sm text-text-secondary">
+              Ainda não tem conta? <Link href="/teste-gratis" className="font-semibold text-primary-bright underline underline-offset-2">Peça o teste grátis de 4 horas</Link>: sua conta é criada na hora, sem cartão.
+            </p>
           </div>
         </section>
 

@@ -7,7 +7,7 @@ import JsonLd from "@/components/ui/JsonLd";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Downloader no Fire Stick e TV Box: Instalar pelo Código",
+  title: "Downloader no Fire Stick e TV Box: Instalar por Código",
   description:
     "Passo a passo com imagens do app Downloader no Fire Stick, TV Box e Android TV: o que ele é, como o código funciona, onde não existe e o que usar no lugar.",
   alternates: { canonical: "/guias/downloader" },

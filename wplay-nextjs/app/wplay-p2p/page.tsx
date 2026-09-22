@@ -10,7 +10,7 @@ import { APPS_PRINCIPAIS } from "@/content/apps";
 const WPLAY_APK = APPS_PRINCIPAIS[0];
 
 export const metadata: Metadata = {
-  title: "WPlay P2P: O App Oficial e Como Reconhecer o Original",
+  title: "WPlay P2P: App Oficial e Como Reconhecer o Original",
   description:
     "WPlay P2P é o nome real do app (arquivo WPlay P2P BinStream). Versão atual medida no pacote, permissões que ele pede e como diferenciar das cópias antigas.",
   alternates: { canonical: "/wplay-p2p" },
