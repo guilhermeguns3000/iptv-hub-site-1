@@ -161,9 +161,12 @@ export default async function MinhaContaPage() {
   // navegador, visível a qualquer visitante; aqui só pode ser lido no
   // servidor, dentro deste Server Component, depois da checagem de sessão
   // e de `cliente.pago` acima).
-  const vipNumero = (process.env.WHATSAPP_VIP || "5562996238082").replace(/\D/g, "");
+  // Sem reserva fixa no código: o número VIP só existe na env da Vercel. Se
+  // faltar, o bloco VIP some e o log avisa, em vez de expor um número aqui.
+  const vipNumero = (process.env.WHATSAPP_VIP || "").replace(/\D/g, "");
   const planoNome = cliente.pago ? getPlano(cliente.pago.plano)?.nome ?? cliente.pago.plano : null;
-  const vipUrl = cliente.pago
+  if (cliente.pago && !vipNumero) console.error("[minha-conta] WHATSAPP_VIP ausente: bloco VIP oculto para um pagante");
+  const vipUrl = cliente.pago && vipNumero
     ? `https://wa.me/${vipNumero}?text=${encodeURIComponent(
         `Olá! Sou ${cliente.nome}, acabei de assinar e quero ativar meu Suporte VIP.\n\n` +
           `Meus dados:\n` +
