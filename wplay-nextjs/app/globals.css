@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   WPlay — Design System (wplay-research/design-system.md)
+   Fundo escuro com sub-tom oliva, verde militar de marca.
+   ============================================================ */
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg-base text-text-primary;
+    font-family: var(--font-body), Inter, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading), Outfit, sans-serif;
+    line-height: 1.15;
+  }
+
+  h1 {
+    @apply font-extrabold;
+  }
+
+  h2,
+  h3 {
+    @apply font-bold;
+  }
+
+  ::selection {
+    background: rgba(107, 142, 35, 0.35);
+    color: #fff;
+  }
+
+  /* Anel de foco de teclado: 3px, cor da marca, offset visível.
+     Nunca outline:none sem substituto (design-system.md seção 4). */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid theme("colors.focusring");
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-4;
+  }
+
+  .btn {
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold ease-std transition-all duration-200 cursor-pointer whitespace-nowrap;
+  }
+
+  /* Primário: gradiente da marca com brilho, sobe 1px no hover. */
+  .btn-primary {
+    @apply btn text-cta-text;
+    background-image: linear-gradient(135deg, #8bb52e 0%, #6b8e23 100%);
+    box-shadow: 0 8px 24px -8px rgba(139, 181, 46, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 30px -8px rgba(139, 181, 46, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-outline {
+    @apply btn border border-border-strong text-primary-bright bg-transparent hover:border-primary-bright hover:bg-bg-surface;
+    background-color: rgba(255, 255, 255, 0.02);
+  }
+
+  /* Cartão: borda em gradiente (mais clara no topo, como luz vindo de cima),
+     profundidade e elevação suave no hover. Um pixel de destaque interno. */
+  .card {
+    @apply relative rounded-lg bg-bg-surface;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0%, rgba(255, 255, 255, 0) 60%);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 10px 30px -12px rgba(0, 0, 0, 0.6);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s;
+  }
+  .card:has(> a:hover),
+  a.card:hover,
+  .card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06) inset,
+      0 18px 40px -14px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(139, 181, 46, 0.25);
+  }
+
+  /* Cartão em destaque: anel verde com brilho. */
+  .card-destaque {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.06) inset,
+      0 0 0 1px rgba(139, 181, 46, 0.55),
+      0 24px 60px -20px rgba(139, 181, 46, 0.35);
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-sm bg-primary px-2 py-0.5 text-xs font-semibold text-cta-text;
+  }
+
+  /* Rótulo de seção: caixa alta pequena com traço da marca. */
+  .section-label {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-primary-bright;
+  }
+  .section-label::before {
+    content: "";
+    @apply h-px w-6 bg-primary-bright;
+  }
+
+  /* Tile de ícone dos recursos. */
+  .icon-tile {
+    @apply flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-primary-bright;
+    background: linear-gradient(135deg, rgba(139, 181, 46, 0.18), rgba(107, 142, 35, 0.06));
+    box-shadow: inset 0 0 0 1px rgba(139, 181, 46, 0.25);
+  }
+
+  /* Fundo técnico: malha fina que some para as bordas. Só decoração. */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 44px 44px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+
+  /* Brilho de marca atrás de um bloco. */
+  .glow-primary {
+    background: radial-gradient(600px circle at 50% 0%, rgba(139, 181, 46, 0.14), transparent 60%);
+  }
+
+  /* Divisor suave entre seções. */
+  .divider-soft {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  }
+}

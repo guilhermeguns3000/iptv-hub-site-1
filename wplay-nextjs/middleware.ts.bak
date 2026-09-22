@@ -1,0 +1,42 @@
+import { NextRequest, NextResponse } from "next/server";
+
+/**
+ * Portão de manutenção: o site inteiro (inclusive /api/trial) fica atrás
+ * dele até o dono testar o funil de ponta a ponta pessoalmente. Acesso de
+ * teste só com a chave abaixo (vira cookie de 7 dias depois do primeiro
+ * uso). Tirar este arquivo do lugar (ou renomear pra middleware.ts.bak)
+ * desliga o portão inteiro — nenhuma outra mudança necessária.
+ */
+const CHAVE = "aa2e181cc2bf84b398fb9bba";
+const COOKIE = "wplay_qa";
+
+export function middleware(req: NextRequest) {
+  const url = req.nextUrl;
+
+  const chave = url.searchParams.get("chave");
+  if (chave === CHAVE) {
+    const destino = url.clone();
+    destino.searchParams.delete("chave");
+    const res = NextResponse.redirect(destino);
+    res.cookies.set(COOKIE, CHAVE, {
+      maxAge: 60 * 60 * 24 * 7,
+      httpOnly: true,
+      sameSite: "lax",
+      secure: true,
+      path: "/",
+    });
+    return res;
+  }
+
+  if (req.cookies.get(COOKIE)?.value === CHAVE) {
+    return NextResponse.next();
+  }
+
+  return NextResponse.rewrite(new URL("/manutencao", req.url));
+}
+
+export const config = {
+  matcher: [
+    "/((?!_next|manutencao|brand|favicon.ico|icon.png|apple-icon.png|robots.txt).*)",
+  ],
+};
