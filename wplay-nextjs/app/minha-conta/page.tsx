@@ -308,7 +308,7 @@ export default async function MinhaContaPage() {
                 <a href={vipUrl} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-4 w-full sm:w-auto">
                   <MessageCircle size={16} aria-hidden /> Abrir Suporte VIP no WhatsApp
                 </a>
-                <p className="mt-2 text-xs text-text-tertiary">Ao abrir a conversa, toque no nome e escolha "Adicionar aos contatos". A mensagem já vai com seus dados.</p>
+                <p className="mt-2 text-xs text-text-tertiary">Ao abrir a conversa, toque no nome e escolha Adicionar aos contatos. A mensagem já vai com seus dados.</p>
               </div>
             </div>
           </div>
