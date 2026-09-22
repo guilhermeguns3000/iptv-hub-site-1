@@ -10,6 +10,7 @@ import CredentialField from "@/components/ui/CredentialField";
 import Faq from "@/components/ui/Faq";
 import JsonLd from "@/components/ui/JsonLd";
 import VipBanner from "@/components/client/VipBanner";
+import StatusBadge from "@/components/client/StatusBadge";
 import AtivarAppForm from "@/components/client/AtivarAppForm";
 import AssistenteInstalacao from "@/components/client/AssistenteInstalacao";
 import ValidadeCard from "@/components/client/ValidadeCard";
@@ -208,9 +209,7 @@ export default async function MinhaContaPage() {
             <h1 className="mt-1 font-heading text-2xl font-extrabold tracking-tight text-text-primary sm:text-3xl">{cliente.nome}</h1>
           </div>
           <div className="flex basis-full flex-row items-center gap-2 sm:basis-auto sm:flex-col sm:items-end">
-            <span className={`rounded-sm px-2 py-0.5 text-xs font-bold ${venceu ? "bg-danger/15 text-danger" : "bg-primary/15 text-primary-bright"}`}>
-              {expira === null ? "Status indisponível" : venceu ? "Expirado" : "Ativo"}
-            </span>
+            <StatusBadge expiraEm={expira ? expira.getTime() : null} />
             <span className="rounded-sm border border-border-strong px-2 py-0.5 text-xs font-semibold text-text-secondary">{rotuloPlano}</span>
           </div>
           </div>
