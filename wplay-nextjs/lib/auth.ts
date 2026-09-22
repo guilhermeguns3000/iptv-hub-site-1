@@ -26,6 +26,7 @@ export interface PedidoPayload {
   n?: string; // nome do comprador
   t?: string; // telefone, com DDI (o que o formulário já envia)
   pais: string; // country pro KnewCMS (ex. "Brasil")
+  v?: string; // visitor_id do Flora (atribuição venda <-> visita)
   adulto: boolean;
   packageIptv: number;
   packageP2p: string;

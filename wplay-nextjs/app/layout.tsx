@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Bricolage_Grotesque, Geist } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -85,6 +86,8 @@ export default function RootLayout({
         <main id="conteudo">{children}</main>
         <WhatsAppFloat />
         <Footer />
+        {/* Flora: visita, pageview e tempo de página. Site WPlay no Flora. */}
+        <Script src="/sm.js" data-site="7866967c-e92e-4ad0-b594-1ef73224e401" data-endpoint="/sm-e" strategy="afterInteractive" />
       </body>
     </html>
   );

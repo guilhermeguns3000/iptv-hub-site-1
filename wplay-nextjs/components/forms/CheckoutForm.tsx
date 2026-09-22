@@ -120,12 +120,21 @@ export default function CheckoutForm({ planId, precoLabel, inicial }: { planId: 
     if (documento.replace(/\D/g, "").length !== 11) return setErro("Digite um CPF válido (exigido para o Pix).");
 
     setLoading(true);
+    // Funil do Flora: o tracker só mede visita; checkout_open é chamado aqui,
+    // e o id do visitante vai no pedido pra ligar a venda à sessão.
+    const flora = (window as unknown as { flora?: { (t: string): void; id?: string } }).flora;
+    try {
+      flora?.("checkout_open");
+    } catch {
+      /* telemetria nunca bloqueia */
+    }
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           planId,
+          visitor: flora?.id,
           nome: nome.trim(),
           email: email.trim(),
           telefone: pais.ddi + telefone.replace(/\D/g, ""),

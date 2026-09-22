@@ -145,7 +145,7 @@ export async function POST(req: NextRequest) {
   // Lição #8: sob Woovi, o Flora JÁ registra a venda pelo webhook da própria
   // Woovi — nunca espelhar `flora_event` de venda aqui de novo (duplicaria).
   // Só o "ativado de verdade" fica de telemetria própria, e é non-blocking.
-  await espelharEventoFlora("cliente_login", { email: pedido.e, usuario: pedido.u, plano: plano.id });
+  await espelharEventoFlora("cliente_login", { email: pedido.e, usuario: pedido.u, plano: plano.id, visitor: pedido.v });
 
   return NextResponse.json({ ok: true });
 }

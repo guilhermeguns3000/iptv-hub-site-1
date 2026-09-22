@@ -15,6 +15,8 @@ interface CheckoutBody {
   telefone?: string;
   documento?: string;
   pais?: string;
+  /** visitor_id do Flora (atribuição da venda à visita). */
+  visitor?: string;
 }
 
 /** CPF: formato + dígitos verificadores (mesmo algoritmo do SmartOne). */
@@ -111,6 +113,7 @@ export async function POST(req: NextRequest) {
     n: nome,
     t: telefone,
     pais,
+    v: typeof body.visitor === "string" ? body.visitor.slice(0, 100) : undefined,
     adulto: teste.adulto,
     packageIptv,
     packageP2p,
