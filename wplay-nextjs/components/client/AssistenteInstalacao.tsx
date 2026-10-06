@@ -39,17 +39,31 @@ function Copiar({ valor }: { valor: string }) {
   );
 }
 
+/**
+ * Código do provedor: identifica a parceria com o nosso servidor dentro do app.
+ *
+ * ⚠️ São TRÊS campos no login manual, não dois, e esquecer este é o erro
+ * clássico: sem ele o aplicativo não encontra a lista e o cliente conclui que
+ * a conta é que não funciona. Confirmado pelo dono em 06/10/2026 (antes
+ * estava registrado como "WAREZ", que está errado).
+ */
+const CODIGO_PROVEDOR = "wplay";
+
 function Credenciais({ username, password }: { username: string; password: string }) {
   return (
     <div className="rounded-md border border-primary-bright/40 bg-primary/10 p-4">
       <p className="text-xs font-semibold uppercase tracking-wide text-primary-bright">Seus dados de acesso</p>
-      {[["Usuário", username], ["Senha", password]].map(([l, v]) => (
+      {[["Código", CODIGO_PROVEDOR], ["Usuário", username], ["Senha", password]].map(([l, v]) => (
         <div key={l} className="mt-2 flex items-center gap-3">
           <span className="w-16 shrink-0 text-sm text-text-tertiary">{l}</span>
           <span className="flex-1 break-all font-mono font-bold text-text-primary">{v}</span>
           <Copiar valor={v} />
         </div>
       ))}
+      <p className="mt-3 text-xs leading-relaxed text-text-tertiary">
+        O código <strong className="text-text-secondary">{CODIGO_PROVEDOR}</strong> vem primeiro: é ele
+        que identifica o nosso servidor. Sem ele o aplicativo não encontra a sua lista.
+      </p>
     </div>
   );
 }
