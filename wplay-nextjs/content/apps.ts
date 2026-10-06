@@ -233,7 +233,7 @@ export interface AppAtivacaoMac {
  * no aparelho.
  */
 export const APPS_ATIVACAO_MAC: AppAtivacaoMac[] = [
-  { nameApp: "BrasilIPTV", label: "Brasil IPTV", xstream: true },
+  { nameApp: "OttPlayer", label: "IPTV OTT Player", xstream: true },
   { nameApp: "EGOIPTV", label: "EGO IPTV", xstream: true },
   { nameApp: "FastPlayer", label: "Fast Player", xstream: true },
   { nameApp: "FlexPlayer", label: "Flex Player", xstream: true },
@@ -249,7 +249,6 @@ export const APPS_ATIVACAO_MAC: AppAtivacaoMac[] = [
   { nameApp: "IPTVProPlayer", label: "IPTV Pro", xstream: true },
   { nameApp: "IPTVStarPlayer", label: "IPTV Star", xstream: true },
   { nameApp: "IPTVXtreamPlayer", label: "IPTV Xtream Player", xstream: true },
-  { nameApp: "OttPlayer", label: "IPTV OTT Player", xstream: true },
   { nameApp: "OTTPlus", label: "OTT Plus", xstream: true },
   { nameApp: "PROPlayer", label: "PRO Player", xstream: true },
   { nameApp: "SCANDICIPTV", label: "SCANDIC IPTV", xstream: true },
@@ -262,6 +261,7 @@ export const APPS_ATIVACAO_MAC: AppAtivacaoMac[] = [
   { nameApp: "TopIPTVSmarters", label: "Top IPTV Smarters", xstream: true },
   { nameApp: "TVIPPlayer", label: "TVIP Player", xstream: true },
   { nameApp: "UniStreamTV", label: "Uni Stream TV", xstream: true },
+  { nameApp: "BrasilIPTV", label: "Brasil IPTV", xstream: true },
 ];
 
 export const INSTALADORES_PC: InstaladorPc[] = [
