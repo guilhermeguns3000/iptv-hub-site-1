@@ -209,40 +209,59 @@ export interface AppAtivacaoMac {
 }
 
 /**
- * ⚠️ O `nameApp` do painel NÃO tem espaço: é `OttPlayer`, não `Ott Player`.
- * Medido em 25/09/2026 chamando a API nome por nome nos dois endpoints. Com
- * espaço a resposta é `App não disponivel` (400) e o MAC nem é olhado — era o
- * caso de 13 destes 16, ou seja, nunca funcionaram.
+ * ⚠️ `nameApp` é CASE SENSITIVE e não tem espaço: é `SeePlayer`, `TVIPPlayer`,
+ * `StreamMediaPlayer`. Conferido contra a API em 06/10/2026, nome por nome.
+ * A documentação sozinha não serve: ela já listou `WTV Player`, que a API
+ * recusava, e já omitiu 12 nomes que funcionavam.
  *
- * `WTV Player` não existe como valor; o app da casa é `Wapp`. O rótulo na tela
- * continua "WTV Player / Wapp", que é como o cliente conhece.
+ * MUDANÇA DE 06/10/2026: os quatro apps da casa DEIXARAM de ser parceiros.
+ *   Wapp e WTV Player -> `App não disponível` (o nome não existe mais)
+ *   XCloud e Kplay    -> `Aplicativo não liberado`
+ * XCloud era a primeira opção daqui, então a ativação por código estava
+ * quebrada justamente para quem não mexia na lista.
  *
- * O `xstream` também não é cosmético: XCloud, Kplay e Wapp só funcionam em
- * `/lines/active/app/xstream`, e os demais só no `/lines/active/app`. Trocar o
- * caminho devolve 500 de um lado e "Erro ao ativar usuário" do outro.
+ * Sobrou UM endpoint: `/lines/active/app/xstream`. Por isso todos levam
+ * `xstream: true` — o campo deixou de escolher caminho, mas fica porque a rota
+ * ainda o lê.
  *
- * Como conferir sem estragar nada: chamar com um MAC falso. `Device not found`
- * significa nome e endpoint certos, só o aparelho é que não é daquele app.
+ * Fora da lista de propósito: `EasyPlayer` ("Aplicativo não liberado" nesta
+ * conta), `IPTVNextPlayer` e `TVVision` (não estão no enum novo e não foram
+ * testados).
  *
- * XCloud vem primeiro porque é o padrão do seletor e responde limpo; o Wapp
- * devolve 500 no painel (defeito do lado deles).
+ * 🚨 NUNCA testar nome novo com MAC falso. Até 29/09 isso devolvia `Device not
+ * found` e era inofensivo; hoje devolve `success:true` e REGISTRA a playlist
+ * no aparelho.
  */
 export const APPS_ATIVACAO_MAC: AppAtivacaoMac[] = [
-  { nameApp: "XCloud", label: "XCloud TV", xstream: true },
-  { nameApp: "Kplay", label: "Kplay", xstream: true },
-  { nameApp: "Wapp", label: "WTV Player / Wapp", xstream: true },
-  { nameApp: "BrasilIPTV", label: "Brasil IPTV", xstream: false },
-  { nameApp: "EasyPlayer", label: "Easy Player", xstream: false },
-  { nameApp: "IPTVPlus", label: "IPTV+", xstream: false },
-  { nameApp: "IPTVNextPlayer", label: "IPTV Next Player", xstream: false },
-  { nameApp: "IPTVPlayerio", label: "IPTV Player IO", xstream: false },
-  { nameApp: "IPTVProPlayer", label: "IPTV Pro Player", xstream: false },
-  { nameApp: "IPTVStarPlayer", label: "IPTV Star Player", xstream: false },
-  { nameApp: "IPlayer", label: "I Player", xstream: false },
-  { nameApp: "OttPlayer", label: "Ott Player", xstream: false },
-  { nameApp: "TVVision", label: "TV Vision", xstream: false },
-  { nameApp: "TiviPlayerIPTV", label: "TiviPlayer IPTV", xstream: false },
-  { nameApp: "IPTV4K", label: "IPTV 4K", xstream: false },
+  { nameApp: "BrasilIPTV", label: "Brasil IPTV", xstream: true },
+  { nameApp: "EGOIPTV", label: "EGO IPTV", xstream: true },
+  { nameApp: "FastPlayer", label: "Fast Player", xstream: true },
+  { nameApp: "FlexPlayer", label: "Flex Player", xstream: true },
+  { nameApp: "FlixtraPlayer", label: "Flixtra Player", xstream: true },
+  { nameApp: "HDMediaPlayer", label: "HD Media Player", xstream: true },
+  { nameApp: "HDPlayer", label: "HD Player", xstream: true },
+  { nameApp: "IBOPlayerPremium", label: "IBO Player Premium", xstream: true },
+  { nameApp: "IPTV4K", label: "IPTV 4K", xstream: true },
+  { nameApp: "IPTVDuplexPlay", label: "IPTV Duplex Play", xstream: true },
+  { nameApp: "IPlayer", label: "IPTV Player", xstream: true },
+  { nameApp: "IPTVPlayerio", label: "IPTV Player io", xstream: true },
+  { nameApp: "IPTVPlus", label: "IPTV Plus", xstream: true },
+  { nameApp: "IPTVProPlayer", label: "IPTV Pro", xstream: true },
+  { nameApp: "IPTVStarPlayer", label: "IPTV Star", xstream: true },
+  { nameApp: "IPTVXtreamPlayer", label: "IPTV Xtream Player", xstream: true },
+  { nameApp: "OttPlayer", label: "IPTV OTT Player", xstream: true },
+  { nameApp: "OTTPlus", label: "OTT Plus", xstream: true },
+  { nameApp: "PROPlayer", label: "PRO Player", xstream: true },
+  { nameApp: "SCANDICIPTV", label: "SCANDIC IPTV", xstream: true },
+  { nameApp: "SeePlayer", label: "See Play", xstream: true },
+  { nameApp: "SmartIptvPlayer", label: "Smart IPTV Player", xstream: true },
+  { nameApp: "SmartPlay", label: "Smart Play", xstream: true },
+  { nameApp: "StreamMediaPlayer", label: "Stream Media Player", xstream: true },
+  { nameApp: "StreamXtream", label: "Stream Xtream", xstream: true },
+  { nameApp: "TiviPlayerIPTV", label: "TiviPlayer IPTV", xstream: true },
+  { nameApp: "TopIPTVSmarters", label: "Top IPTV Smarters", xstream: true },
+  { nameApp: "TVIPPlayer", label: "TVIP Player", xstream: true },
+  { nameApp: "UniStreamTV", label: "Uni Stream TV", xstream: true },
 ];
 
 export const INSTALADORES_PC: InstaladorPc[] = [

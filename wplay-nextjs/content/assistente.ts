@@ -68,25 +68,25 @@ const proprio = (nome: string) => APPS_PRINCIPAIS.find((a) => a.nome === nome);
  */
 export const APPS_ASSISTENTE: AppAssistente[] = [
   // ── Importação por MAC (TV e Android) ─────────────────────────────
-  { nome: "WTV Player / Wapp", nameApp: "Wapp", xstream: true, icone: icone("WTV PRO"), descricao: "Recomendado na loja da TV: Samsung, LG e Roku.", plataformas: ["tv"], lojas: ["samsung", "lg", "roku"], servico: "iptv", recomendado: true },
-  { nome: "XCloud", nameApp: "XCloud", xstream: true, icone: icone("XCloud"), descricao: "Samsung e LG pela loja; Mac e iPhone pela App Store.", plataformas: ["tv", "mac", "ios"], lojas: ["samsung", "lg"], servico: "iptv", recomendado: true, loja: "https://apps.apple.com/us/app/xcloud-mobile/id6471106231" },
-  { nome: "Kplay", nameApp: "Kplay", xstream: true, descricao: "Android, TV Box e Fire Stick.", plataformas: ["android"], servico: "iptv" },
+  { nome: "WTV Player / Wapp", icone: icone("WTV PRO"), descricao: "Recomendado na loja da TV: Samsung, LG e Roku.", plataformas: ["tv"], lojas: ["samsung", "lg", "roku"], servico: "iptv", recomendado: true },
+  { nome: "XCloud", icone: icone("XCloud"), descricao: "Samsung e LG pela loja; Mac e iPhone pela App Store.", plataformas: ["tv", "mac", "ios"], lojas: ["samsung", "lg"], servico: "iptv", recomendado: true, loja: "https://apps.apple.com/us/app/xcloud-mobile/id6471106231" },
+  { nome: "Kplay", descricao: "Android, TV Box e Fire Stick.", plataformas: ["android"], servico: "iptv" },
   { nome: "Brasil IPTV", nameApp: "BrasilIPTV", icone: "icone-brasil-iptv.webp", descricao: "Samsung, LG e Roku.", plataformas: ["tv"], lojas: ["samsung", "lg", "roku"], servico: "iptv" },
-  { nome: "Easy Player", nameApp: "EasyPlayer", icone: icone("Easy Player"), descricao: "Android.", plataformas: ["android"], servico: "iptv", apk: proprio("Easy Player")?.apk, codigos: proprio("Easy Player")?.codigos },
+  { nome: "Easy Player", icone: icone("Easy Player"), descricao: "Android.", plataformas: ["android"], servico: "iptv", apk: proprio("Easy Player")?.apk, codigos: proprio("Easy Player")?.codigos },
   { nome: "IPTV+", nameApp: "IPTVPlus", icone: "icone-iptv-plus.webp", descricao: "Android.", plataformas: ["android"], servico: "iptv" },
   { nome: "Ott Player", nameApp: "OttPlayer", descricao: "Samsung, LG, Roku e Android.", plataformas: ["tv", "android"], lojas: ["samsung", "lg", "roku"], servico: "iptv" },
-  { nome: "IPTV Next Player", nameApp: "IPTVNextPlayer", descricao: "Android.", plataformas: ["android"], servico: "iptv" },
+  { nome: "IPTV Next Player", descricao: "Android.", plataformas: ["android"], servico: "iptv" },
   { nome: "IPTV Player IO", nameApp: "IPTVPlayerio", icone: "icone-iptv-player-io.webp", descricao: "Samsung, LG, Roku, Android, iPhone, Windows e Mac.", plataformas: ["tv", "android", "ios", "windows", "mac"], lojas: ["samsung", "lg", "roku"], servico: "iptv" },
   { nome: "IPTV Pro Player", nameApp: "IPTVProPlayer", icone: "icone-iptv-pro-player.webp", descricao: "Samsung, LG, Roku e Android.", plataformas: ["tv", "android"], lojas: ["samsung", "lg", "roku"], servico: "iptv" },
   { nome: "IPTV Star Player", nameApp: "IPTVStarPlayer", icone: "icone-iptv-star-player.webp", descricao: "Samsung, LG, Roku e Android.", plataformas: ["tv", "android"], lojas: ["samsung", "lg", "roku"], servico: "iptv" },
   { nome: "I Player", nameApp: "IPlayer", descricao: "Samsung, LG, Roku e Android.", plataformas: ["tv", "android"], lojas: ["samsung", "lg", "roku"], servico: "iptv" },
-  { nome: "TV Vision", nameApp: "TVVision", descricao: "Android.", plataformas: ["android"], servico: "iptv" },
+  { nome: "TV Vision", descricao: "Android.", plataformas: ["android"], servico: "iptv" },
   { nome: "TiviPlayer", nameApp: "TiviPlayerIPTV", icone: "icone-tiviplayer.webp", descricao: "Samsung, LG, Roku e Android.", plataformas: ["tv", "android"], lojas: ["samsung", "lg", "roku"], servico: "iptv" },
   { nome: "IPTV 4K", nameApp: "IPTV4K", icone: "icone-iptv-4k.webp", descricao: "Samsung, LG, Roku e Android.", plataformas: ["tv", "android"], lojas: ["samsung", "lg", "roku"], servico: "iptv" },
 
   // ── Apps próprios de download (Android) ───────────────────────────
   { nome: "WTV PRO", icone: icone("WTV PRO"), descricao: "Player simples, só canais ao vivo.", plataformas: ["android"], servico: "iptv", recomendado: true, apk: proprio("WTV PRO")?.apk, codigos: proprio("WTV PRO")?.codigos },
-  { nome: "XCloud", nameApp: "XCloud", xstream: true, icone: icone("XCloud"), descricao: "Abre rápido em conexão lenta. Aceita importação por MAC.", plataformas: ["android"], servico: "iptv", apk: proprio("XCloud")?.apk, codigos: proprio("XCloud")?.codigos },
+  { nome: "XCloud", icone: icone("XCloud"), descricao: "Abre rápido em conexão lenta. Aceita importação por MAC.", plataformas: ["android"], servico: "iptv", apk: proprio("XCloud")?.apk, codigos: proprio("XCloud")?.codigos },
   { nome: "WappIBO", icone: icone("WappIBO"), descricao: "Celular, Android TV e TV Box.", plataformas: ["android"], servico: "iptv", apk: proprio("WappIBO")?.apk, codigos: proprio("WappIBO")?.codigos },
   { nome: "XCloud Mobile", icone: icone("XCloud Mobile"), descricao: "Celular.", plataformas: ["android"], servico: "iptv", apk: proprio("XCloud Mobile")?.apk, codigos: proprio("XCloud Mobile")?.codigos },
   { nome: "Wapp Android", icone: icone("Wapp Android"), descricao: "Celular.", plataformas: ["android"], servico: "iptv", apk: proprio("Wapp Android")?.apk, codigos: proprio("Wapp Android")?.codigos },
