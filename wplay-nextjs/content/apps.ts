@@ -234,6 +234,7 @@ export interface AppAtivacaoMac {
  */
 export const APPS_ATIVACAO_MAC: AppAtivacaoMac[] = [
   { nameApp: "OttPlayer", label: "IPTV OTT Player", xstream: true },
+  { nameApp: "IPTVPlayerio", label: "IPTV Player io", xstream: true },
   { nameApp: "EGOIPTV", label: "EGO IPTV", xstream: true },
   { nameApp: "FastPlayer", label: "Fast Player", xstream: true },
   { nameApp: "FlexPlayer", label: "Flex Player", xstream: true },
@@ -244,7 +245,6 @@ export const APPS_ATIVACAO_MAC: AppAtivacaoMac[] = [
   { nameApp: "IPTV4K", label: "IPTV 4K", xstream: true },
   { nameApp: "IPTVDuplexPlay", label: "IPTV Duplex Play", xstream: true },
   { nameApp: "IPlayer", label: "IPTV Player", xstream: true },
-  { nameApp: "IPTVPlayerio", label: "IPTV Player io", xstream: true },
   { nameApp: "IPTVPlus", label: "IPTV Plus", xstream: true },
   { nameApp: "IPTVProPlayer", label: "IPTV Pro", xstream: true },
   { nameApp: "IPTVStarPlayer", label: "IPTV Star", xstream: true },
