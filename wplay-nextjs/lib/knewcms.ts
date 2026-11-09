@@ -264,6 +264,8 @@ export interface AtivarAppResposta {
   code?: string;
   access_code?: string;
   activation_code?: string;
+  /** Qualquer outro campo que o painel mande: ver `codigoDaResposta`. */
+  [extra: string]: unknown;
 }
 
 export async function ativarAppPorMac(input: AtivarAppInput): Promise<AtivarAppResposta> {

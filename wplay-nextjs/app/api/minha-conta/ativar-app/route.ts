@@ -1,8 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
 import { buscarTestePorEmail, rateLimit } from "@/lib/store";
-import { ativarAppPorMac } from "@/lib/knewcms";
+import { ativarAppPorMac, type AtivarAppResposta } from "@/lib/knewcms";
 import { APPS_ATIVACAO_MAC } from "@/content/apps";
+
+/** Campos da resposta que nunca são o código. */
+const NAO_E_CODIGO = new Set(["success", "status", "activation_id", "message", "error", "id", "ok"]);
+
+/**
+ * O Max Player ativa sem MAC e o painel devolve um código que o cliente digita
+ * no app. A documentação só promete success/status/activation_id, e o dono
+ * confirmou em 09/11/2026 que o código existe e funciona. Então: tenta os
+ * nomes plausíveis e, se nenhum casar, pega o primeiro valor com cara de
+ * código. Melhor isso do que mandar o cliente embora num caminho que funciona.
+ */
+function codigoDaResposta(resp: AtivarAppResposta): string | null {
+  for (const nome of ["code", "access_code", "activation_code", "codigo", "pin", "key"]) {
+    const v = resp[nome];
+    if (typeof v === "string" && v.trim()) return v.trim();
+  }
+  for (const [chave, valor] of Object.entries(resp)) {
+    if (NAO_E_CODIGO.has(chave)) continue;
+    const s = typeof valor === "string" || typeof valor === "number" ? String(valor) : "";
+    if (/^[A-Za-z0-9._-]{4,40}$/.test(s)) return s;
+  }
+  return null;
+}
 
 export const runtime = "nodejs";
 
@@ -93,7 +116,7 @@ export async function POST(req: NextRequest) {
       // não promete o nome do campo, então gravamos a resposta e usamos o
       // primeiro que vier, com um recado honesto se não vier nenhum.
       console.info("[ativar-app] ativacao", app.nameApp, JSON.stringify(resp));
-      const codigo = resp.code || resp.access_code || resp.activation_code || null;
+      const codigo = codigoDaResposta(resp);
       return NextResponse.json({
         ok: true,
         codigo,
