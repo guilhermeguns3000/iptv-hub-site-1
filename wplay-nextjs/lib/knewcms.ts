@@ -248,12 +248,22 @@ export interface AtivarAppInput {
   mac: string;
   xstream: boolean;
   namePlaylist: string;
+  /** Obrigatória nos apps com `activationRequiresKey`; omitida se vazia. */
+  deviceKey?: string;
 }
 
 export interface AtivarAppResposta {
   success?: boolean;
   message?: string;
   error?: string;
+  /**
+   * Max Player não usa MAC: o painel devolve um dado que o cliente digita no
+   * app. A documentação só promete success/status/activation_id, então
+   * aceitamos os nomes plausíveis e o chamador usa o primeiro que vier.
+   */
+  code?: string;
+  access_code?: string;
+  activation_code?: string;
 }
 
 export async function ativarAppPorMac(input: AtivarAppInput): Promise<AtivarAppResposta> {
@@ -265,6 +275,7 @@ export async function ativarAppPorMac(input: AtivarAppInput): Promise<AtivarAppR
       mac: input.mac,
       namePlaylist: input.namePlaylist,
       id_user: input.id,
+      ...(input.deviceKey ? { deviceKey: input.deviceKey } : {}),
     }),
   });
 }

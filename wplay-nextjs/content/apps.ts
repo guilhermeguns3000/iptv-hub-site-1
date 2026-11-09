@@ -206,6 +206,10 @@ export interface AppAtivacaoMac {
   /** Nome mostrado pro cliente (pode ser mais amigável que nameApp). */
   label: string;
   xstream: boolean;
+  /** O painel exige `deviceKey` neste app (campo `activationRequiresKey`). */
+  key?: boolean;
+  /** Ativa sem MAC (`activationUsesMac: false`): o painel devolve o dado. */
+  nomac?: boolean;
 }
 
 /**
@@ -214,11 +218,11 @@ export interface AppAtivacaoMac {
  * A documentação sozinha não serve: ela já listou `WTV Player`, que a API
  * recusava, e já omitiu 12 nomes que funcionavam.
  *
- * MUDANÇA DE 06/10/2026: os quatro apps da casa DEIXARAM de ser parceiros.
- *   Wapp e WTV Player -> `App não disponível` (o nome não existe mais)
- *   XCloud e Kplay    -> `Aplicativo não liberado`
- * XCloud era a primeira opção daqui, então a ativação por código estava
- * quebrada justamente para quem não mexia na lista.
+ * MUDANÇA DE 09/11/2026: a parceria caiu de 29 apps para 8. A lista viva é
+ * `GET /app-activations/apps`, fonte de verdade que muda do lado deles.
+ * Quatro passaram a exigir `deviceKey` (a key que o app mostra junto do MAC,
+ * com a tela de playlist aberta) e o Max Player ativa sem MAC nenhum.
+ * Antes disso, em 06/10, os quatro apps da casa já tinham saído.
  *
  * Sobrou UM endpoint: `/lines/active/app/xstream`. Por isso todos levam
  * `xstream: true` — o campo deixou de escolher caminho, mas fica porque a rota
@@ -233,35 +237,14 @@ export interface AppAtivacaoMac {
  * no aparelho.
  */
 export const APPS_ATIVACAO_MAC: AppAtivacaoMac[] = [
-  { nameApp: "OttPlayer", label: "IPTV OTT Player", xstream: true },
-  { nameApp: "IPTVPlayerio", label: "IPTV Player io", xstream: true },
-  { nameApp: "EGOIPTV", label: "EGO IPTV", xstream: true },
-  { nameApp: "FastPlayer", label: "Fast Player", xstream: true },
+  { nameApp: "IPTVPlayerio", label: "IPTV Player io", xstream: true, key: true },
+  { nameApp: "MaxPlayer", label: "Max Player", xstream: true, nomac: true },
   { nameApp: "FlexPlayer", label: "Flex Player", xstream: true },
-  { nameApp: "FlixtraPlayer", label: "Flixtra Player", xstream: true },
-  { nameApp: "HDMediaPlayer", label: "HD Media Player", xstream: true },
-  { nameApp: "HDPlayer", label: "HD Player", xstream: true },
-  { nameApp: "IBOPlayerPremium", label: "IBO Player Premium", xstream: true },
-  { nameApp: "IPTV4K", label: "IPTV 4K", xstream: true },
-  { nameApp: "IPTVDuplexPlay", label: "IPTV Duplex Play", xstream: true },
-  { nameApp: "IPlayer", label: "IPTV Player", xstream: true },
-  { nameApp: "IPTVPlus", label: "IPTV Plus", xstream: true },
-  { nameApp: "IPTVProPlayer", label: "IPTV Pro", xstream: true },
-  { nameApp: "IPTVStarPlayer", label: "IPTV Star", xstream: true },
-  { nameApp: "IPTVXtreamPlayer", label: "IPTV Xtream Player", xstream: true },
-  { nameApp: "OTTPlus", label: "OTT Plus", xstream: true },
-  { nameApp: "PROPlayer", label: "PRO Player", xstream: true },
-  { nameApp: "SCANDICIPTV", label: "SCANDIC IPTV", xstream: true },
-  { nameApp: "SeePlayer", label: "See Play", xstream: true },
-  { nameApp: "SmartIptvPlayer", label: "Smart IPTV Player", xstream: true },
-  { nameApp: "SmartPlay", label: "Smart Play", xstream: true },
-  { nameApp: "StreamMediaPlayer", label: "Stream Media Player", xstream: true },
-  { nameApp: "StreamXtream", label: "Stream Xtream", xstream: true },
-  { nameApp: "TiviPlayerIPTV", label: "TiviPlayer IPTV", xstream: true },
-  { nameApp: "TopIPTVSmarters", label: "Top IPTV Smarters", xstream: true },
-  { nameApp: "TVIPPlayer", label: "TVIP Player", xstream: true },
-  { nameApp: "UniStreamTV", label: "Uni Stream TV", xstream: true },
-  { nameApp: "BrasilIPTV", label: "Brasil IPTV", xstream: true },
+  { nameApp: "FastPlayer", label: "Fast Player", xstream: true },
+  { nameApp: "SeePlayer", label: "See Player", xstream: true },
+  { nameApp: "HDPlayer", label: "HD Player", xstream: true, key: true },
+  { nameApp: "BrasilIPTV", label: "Brasil IPTV", xstream: true, key: true },
+  { nameApp: "RXPurple", label: "RX Purple", xstream: true, key: true },
 ];
 
 export const INSTALADORES_PC: InstaladorPc[] = [

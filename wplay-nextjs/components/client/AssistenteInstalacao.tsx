@@ -155,6 +155,14 @@ export default function AssistenteInstalacao({ nome, username, password, whatsap
 
   const apps = aparelho ? appsParaAparelho(aparelho.id) : [];
   const iptv = apps.filter((a) => a.servico === "iptv");
+  /**
+   * Nossos apps e os players parceiros são dois caminhos diferentes: um se
+   * baixa e entra com usuário e senha, o outro recebe a lista pelo código.
+   * Numa lista só, o cliente não percebe que mudou de caminho. Os nossos vêm
+   * na frente: é o que a operação quer em escala.
+   */
+  const iptvNossos = iptv.filter((a) => !a.nameApp);
+  const iptvParceiros = iptv.filter((a) => a.nameApp);
   const p2p = apps.filter((a) => a.servico === "p2p");
   const ehAndroidTv = aparelho && ["android_tv", "tv_box", "fire_stick"].includes(aparelho.id);
 
@@ -237,10 +245,20 @@ export default function AssistenteInstalacao({ nome, username, password, whatsap
                 <div className="space-y-2">{p2p.map((a) => <Card key={a.nome} a={a} onClick={() => { setApp(a); setPasso(3); }} />)}</div>
               </div>
             )}
-            {iptv.length > 0 && (
+            {iptvNossos.length > 0 && (
               <div className="mb-4">
-                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-primary-bright">IPTV: canais ao vivo, filmes e séries</p>
-                <div className="space-y-2">{iptv.map((a) => <Card key={a.nome} a={a} onClick={() => { setApp(a); setPasso(3); }} />)}</div>
+                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-primary-bright">
+                  {iptvParceiros.length > 0 ? "Apps WPlay: baixe e entre com os seus dados" : "IPTV: canais ao vivo, filmes e séries"}
+                </p>
+                <div className="space-y-2">{iptvNossos.map((a) => <Card key={a.nome} a={a} onClick={() => { setApp(a); setPasso(3); }} />)}</div>
+              </div>
+            )}
+            {iptvParceiros.length > 0 && (
+              <div className="mb-4">
+                <p className="mb-2 text-xs font-bold uppercase tracking-wide text-primary-bright">
+                  {iptvNossos.length > 0 ? "Players parceiros: a lista entra sozinha pelo código" : "IPTV: canais ao vivo, filmes e séries"}
+                </p>
+                <div className="space-y-2">{iptvParceiros.map((a) => <Card key={a.nome} a={a} onClick={() => { setApp(a); setPasso(3); }} />)}</div>
               </div>
             )}
             {p2p.length > 0 && aparelho.id !== "celular_android" && (
